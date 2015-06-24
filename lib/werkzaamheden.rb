@@ -15,8 +15,13 @@ module Werkzaamheden
       end
     end
 
+    # def self.all_werken
+    #   xml_doc.xpath('//Werk')
+    # end
+
     def self.werken
-      xml_doc.xpath('//Werk')
+      #xml_doc.xpath('//Werk[./Typ[text()>1]]')
+      @werken ||= xml_doc.xpath('//Werk').map { |e| Werkzaamheden::Werk.new(e) }
     end
   end
 end
